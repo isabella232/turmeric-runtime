@@ -179,7 +179,7 @@ public class KeepAliveTest extends AbstractWithProxyServerTest {
 	@SuppressWarnings("unchecked")
 	//@Ignore // inconsistent testcases
 	public void testDispatchSimpleKeepAlive10Consecutive() throws Exception {
-		final int ITERATIONS = 10;
+		final int ITERATIONS = 5;
 		
 		// Send first just to prep config
 		final Service keepAlive = ServiceFactory.create("Test1Service", "keepAlive", serverUri.toURL());

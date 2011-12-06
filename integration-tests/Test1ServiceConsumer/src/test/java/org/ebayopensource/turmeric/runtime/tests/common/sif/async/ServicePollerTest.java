@@ -41,8 +41,8 @@ import com.ebay.kernel.service.invocation.client.http.nio.NioAsyncHttpClients;
 
 public class ServicePollerTest extends AbstractWithServerTest {
 
-	static final NioAsyncHttpClient client = NioAsyncHttpClients.newClient(
-			"ServicePollerTest", null, 10000);
+	final NioAsyncHttpClient client = NioAsyncHttpClients.newClient(
+			"ServicePollerTest", null, 100000);
 
 	@Test
 	public void getSetOfTransportPoller() throws Exception {

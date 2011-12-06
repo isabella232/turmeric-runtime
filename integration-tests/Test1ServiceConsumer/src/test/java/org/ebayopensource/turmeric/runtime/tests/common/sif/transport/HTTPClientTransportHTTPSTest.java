@@ -54,6 +54,7 @@ public class HTTPClientTransportHTTPSTest extends AbstractTurmericTestCase {
 		TransportOptions options = new TransportOptions();
 		options.getProperties().put(HTTPClientTransportConfig.USE_HTTPS, "TRUE");
 		options.getProperties().put(SOAConstants.HTTP_VERSION, SOAConstants.TRANSPORT_HTTP_10);
+		options.setInvocationTimeout(200000);
 		if (proxyEnable) {
 			new Socket("skyline.qa.ebay.com", 80);
 			options.getProperties().put(HTTPClientTransportConfig.PROXY_HOST,
