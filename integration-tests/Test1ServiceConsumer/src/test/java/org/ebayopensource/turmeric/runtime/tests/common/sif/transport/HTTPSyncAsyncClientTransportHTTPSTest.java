@@ -48,7 +48,7 @@ public class HTTPSyncAsyncClientTransportHTTPSTest {
 	}
 
 	@Test
-	@Ignore // inconsistent testcases
+	//@Ignore // inconsistent testcases
 	public void httpClient() throws Exception {
 		HTTPSyncAsyncClientTransport transport = new HTTPSyncAsyncClientTransport();
 		ClientServiceId id = new ClientServiceId("test1", "local");

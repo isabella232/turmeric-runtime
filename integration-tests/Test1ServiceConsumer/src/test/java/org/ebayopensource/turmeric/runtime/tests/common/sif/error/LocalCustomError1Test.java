@@ -47,7 +47,7 @@ public class LocalCustomError1Test extends AbstractTurmericTestCase {
     }
     
     @Test
-    @Ignore // inconsistent testcases
+    //@Ignore // inconsistent testcases
     public void test1Exception() throws Exception {
         ServicePayloadExecutor test = createExecutor();
         test.addTransportHeader(Test1Constants.TR_HDR_TEST1_EXCEPTION, "true");

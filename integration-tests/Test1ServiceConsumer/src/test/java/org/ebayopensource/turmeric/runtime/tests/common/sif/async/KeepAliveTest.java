@@ -177,7 +177,7 @@ public class KeepAliveTest extends AbstractWithProxyServerTest {
 
 	@Test
 	@SuppressWarnings("unchecked")
-	@Ignore // inconsistent testcases
+	//@Ignore // inconsistent testcases
 	public void testDispatchSimpleKeepAlive10Consecutive() throws Exception {
 		final int ITERATIONS = 10;
 		

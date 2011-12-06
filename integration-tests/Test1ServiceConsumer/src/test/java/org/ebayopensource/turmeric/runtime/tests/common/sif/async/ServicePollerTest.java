@@ -128,7 +128,7 @@ public class ServicePollerTest extends AbstractWithServerTest {
 	}
 
 	@Test
-	@Ignore // inconsistent testcases
+	//@Ignore // inconsistent testcases
 	public void noPartialTimeout() throws Exception {
 		pollwithShortTimeout(false, false);
 		pollwithLongTimeout(false, false);

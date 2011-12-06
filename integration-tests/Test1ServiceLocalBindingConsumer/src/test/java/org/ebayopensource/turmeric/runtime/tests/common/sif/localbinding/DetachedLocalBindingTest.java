@@ -55,7 +55,7 @@ public class DetachedLocalBindingTest extends BaseLocalBindingTestCase {
 
 
 	@Test
-	@Ignore // inconsistent testcases
+	//@Ignore // inconsistent testcases
 	public void callsWithTimeoutOverride() throws Exception {
 		System.setProperty("test.log.out", "true");
 		try{

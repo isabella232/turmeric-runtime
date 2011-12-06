@@ -124,7 +124,7 @@ public class FaultPropogationTest extends BaseErrorResponseTest {
 
 	@Test
 	@SuppressWarnings("unchecked")
-	@Ignore // inconsistent testcases
+	//@Ignore // inconsistent testcases
 	public void verifyIfSoapFaultIsException() throws Exception {
 		Service service = ServiceFactory.create("Test1Service",
 				"alwayThrowsSOAPFault", null);
