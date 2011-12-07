@@ -48,7 +48,7 @@ public class AsyncPollNonBlockingTest extends AbstractWithServerTest {
 	@SuppressWarnings("unchecked")
 	//@Ignore // inconsistent testcases
 	public void servicePollNonBlocking_timeout() throws Exception {
-		Service service = ServiceFactory.create("test1", "remote", null);
+		Service service = ServiceFactory.create("test1", "remote", serverUri.toURL());
 		service.getInvokerOptions().getTransportOptions().setInvocationTimeout(300000);
 		service.createDispatch("echoString").invokeAsync(
 				ECHO_STRING + "service1");
