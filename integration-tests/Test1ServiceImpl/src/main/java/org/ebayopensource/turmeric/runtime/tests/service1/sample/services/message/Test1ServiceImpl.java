@@ -106,7 +106,9 @@ public class Test1ServiceImpl implements Test1Service {
     			
     	
 		if (needTest1Exception) {
-			throw new Test1Exception("Our test1 exception");
+			Test1Exception exp = new Test1Exception("Our test1 exception");
+			LOG.info("Inconsistent testing Test1ServiceImpl -  myTestOperation() - needTest1Exception " + exp);
+			throw exp;
 		}
 		
 		LOG.info("Inconsistent testing Test1ServiceImpl -  myTestOperation() - needTest1ServiceException " + needTest1ServiceException);

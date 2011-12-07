@@ -10,6 +10,8 @@ package org.ebayopensource.turmeric.runtime.tests.common.sif.localbinding;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.logging.Logger;
+
 import javax.xml.ws.Dispatch;
 import javax.xml.ws.Response;
 
@@ -29,6 +31,8 @@ import org.ebayopensource.turmeric.runtime.tests.service1.sample.types1.MyMessag
 
 public class DetachedLocalBindingTest extends BaseLocalBindingTestCase {
 
+	private static final Logger LOG = Logger.getLogger(DetachedLocalBindingTest.class.getName());
+	
 	public DetachedLocalBindingTest() throws Exception {
 		super();
 	}
@@ -58,6 +62,7 @@ public class DetachedLocalBindingTest extends BaseLocalBindingTestCase {
 	//@Ignore // inconsistent testcases
 	public void callsWithTimeoutOverride() throws Exception {
 		System.setProperty("test.log.out", "true");
+		LOG.info("Inconsistent testing DetachedLocalBindingTest -  callsWithTimeoutOverride() starting");
 		try{
 			Test1Driver driver = 
 				new Test1Driver(Test1Driver.TEST1_ADMIN_NAME, "detached", CONFIG_ROOT, LOCAL_TRANSPORT, "XML", "XML");
@@ -73,6 +78,7 @@ public class DetachedLocalBindingTest extends BaseLocalBindingTestCase {
 					"Request timed out after " + 0
 							+ " ms in local transport for service - ");
 			driver.doCall();
+			LOG.info("Inconsistent testing DetachedLocalBindingTest -  callsWithTimeoutOverride() ending");
 		}finally{
 			System.setProperty("test.log.out", ""); //remove is a multistep process for target jvm
 			// see some other tear downs. This is temporary to try and track whats going on with this 
