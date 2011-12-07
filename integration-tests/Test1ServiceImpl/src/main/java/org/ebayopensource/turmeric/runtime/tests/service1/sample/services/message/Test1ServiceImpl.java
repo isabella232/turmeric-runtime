@@ -10,6 +10,7 @@ package org.ebayopensource.turmeric.runtime.tests.service1.sample.services.messa
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
@@ -49,6 +50,8 @@ public class Test1ServiceImpl implements Test1Service {
 	static final String METRIC_NAME = "NumberOfRecipients";
 
 	static final String CLIENT_METRIC_NAME = "NumberOfClientCalls";
+	
+	private static final Logger LOG = Logger.getLogger(Test1ServiceImpl.class.getName());
 
 	// Register serverside metric
 	public Test1ServiceImpl() {
@@ -69,6 +72,9 @@ public class Test1ServiceImpl implements Test1Service {
 
 	public MyMessage myTestOperation(MyMessage param1) throws Test1Exception,
 			Test1ServiceException {
+    	LOG.info("Inconsistent testing Test1ServiceImpl -  myTestOperation() starting" +
+    			" param1 - "+ param1);
+    	
 		boolean needTest1Exception = false;
 		boolean needTest1ServiceException = false;
 		MessageContext messageContext = MessageContextAccessor.getContext();
@@ -96,9 +102,14 @@ public class Test1ServiceImpl implements Test1Service {
 					+ e.toString(), e);
 		}
 
+		LOG.info("Inconsistent testing Test1ServiceImpl -  myTestOperation() - needTest1Exception " + needTest1Exception);
+    			
+    	
 		if (needTest1Exception) {
 			throw new Test1Exception("Our test1 exception");
 		}
+		
+		LOG.info("Inconsistent testing Test1ServiceImpl -  myTestOperation() - needTest1ServiceException " + needTest1ServiceException);
 		if (needTest1ServiceException) {
 			throw new Test1ServiceException(
 					TestServerErrorTypes.TEST1_SERVICE_EXCEPTION,
@@ -146,6 +157,8 @@ public class Test1ServiceImpl implements Test1Service {
 			param1.setBody(chainedData.toString());
 		}
 
+		LOG.info("Inconsistent testing Test1ServiceImpl -  myTestOperation() ending" +
+    			" param1 - "+ param1);
 		return param1;
 	}
 
@@ -270,6 +283,8 @@ public class Test1ServiceImpl implements Test1Service {
 		return param1;
 	}
 	private void testThrowException() throws Test1Exception, Test1ServiceException {
+    	LOG.info("Inconsistent testing Test1ServiceImpl -  testThrowException() starting");
+    	
 		MessageContext messageContext = MessageContextAccessor.getContext();
 		Message reqMsg = messageContext.getRequestMessage();
 		boolean needTest1Exception = false;
@@ -284,13 +299,16 @@ public class Test1ServiceImpl implements Test1Service {
 					+ e.toString(), e);
 		}
 
+		LOG.info("Inconsistent testing Test1ServiceImpl -  testThrowException() needTest1Exception " + needTest1Exception);
 		if (needTest1Exception) {
 			throw new Test1Exception("Our test1 exception");
 		}
+		LOG.info("Inconsistent testing Test1ServiceImpl -  testThrowException() needTest1ServiceException" + needTest1ServiceException);
 		if (needTest1ServiceException) {
 			throw new Test1ServiceException(
 					TestServerErrorTypes.TEST1_SERVICE_EXCEPTION,
 					new Object[] { "my_program_data" });
 		}
+		LOG.info("Inconsistent testing Test1ServiceImpl -  testThrowException() starting");
 	}
 }

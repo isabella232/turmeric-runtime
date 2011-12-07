@@ -8,6 +8,8 @@
  *******************************************************************************/
 package org.ebayopensource.turmeric.runtime.tests.common.sif.error;
 
+import java.util.logging.Logger;
+
 import org.ebayopensource.turmeric.runtime.common.exceptions.ServiceInvocationException;
 import org.ebayopensource.turmeric.runtime.errorlibrary.ErrorDataCollection;
 import org.ebayopensource.turmeric.runtime.tests.common.AbstractTurmericTestCase;
@@ -28,6 +30,8 @@ import org.junit.Test;
 public class LocalExceptionTest extends AbstractTurmericTestCase {
     @Rule
     public NeedsConfig needsconfig = new NeedsConfig("config");
+    
+    private static final Logger LOG = Logger.getLogger(LocalExceptionTest.class.getName());
     
     private ServicePayloadExecutor createExecutor() throws Exception {
         // Setup Request
@@ -52,6 +56,7 @@ public class LocalExceptionTest extends AbstractTurmericTestCase {
     @Test
     //@Ignore // inconsistent testcases
     public void test1Exception() throws Exception {
+    	LOG.info("Inconsistent testing LocalExceptionTest -  test1Exception() starting");
         ServicePayloadExecutor test = createExecutor();
         test.addTransportHeader(Test1Constants.TR_HDR_TEST1_EXCEPTION, "true");
         test.addTransportHeader(Test1Constants.TR_HDR_TEST1_HARMLESS_EXCEPTION, "true");
@@ -62,14 +67,17 @@ public class LocalExceptionTest extends AbstractTurmericTestCase {
         error.needsExceptionText("Test1Exception: Our test1 exception");
         error.optionalErrorDataId(ErrorDataCollection.svc_rt_application_internal_error);
         test.setAssertException(error);
+        LOG.info("Inconsistent testing LocalExceptionTest -  test1Exception() setAssertException" + error);
 
         test.doCalls();
+        LOG.info("Inconsistent testing LocalExceptionTest -  test1Exception() ending");
     }
 
     @SuppressWarnings("deprecation")
     @Test
     //@Ignore // inconsistent testcases
     public void test1ServiceException() throws Exception {
+    	LOG.info("Inconsistent testing LocalExceptionTest -  test1ServiceException() starting");
         ServicePayloadExecutor test = createExecutor();
         test.addTransportHeader(Test1Constants.TR_HDR_TEST1_SERVICE_EXCEPTION, "true");
 
@@ -79,8 +87,10 @@ public class LocalExceptionTest extends AbstractTurmericTestCase {
         error.needsExceptionText("with data my_program_data");
         error.optionalErrorDataId(TestServerErrorTypes.TEST1_SERVICE_EXCEPTION.getId());
         test.setAssertException(error);
+        LOG.info("Inconsistent testing LocalExceptionTest -  test1ServiceException() setAssertException" + error);
 
         test.doCalls();
+        LOG.info("Inconsistent testing LocalExceptionTest -  test1ServiceException() ending");
     }
 
     @Test

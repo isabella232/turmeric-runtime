@@ -8,6 +8,8 @@
  *******************************************************************************/
 package org.ebayopensource.turmeric.runtime.tests.common.sif.error;
 
+import java.util.logging.Logger;
+
 import org.ebayopensource.turmeric.runtime.common.exceptions.ServiceInvocationException;
 import org.ebayopensource.turmeric.runtime.errorlibrary.ErrorDataCollection;
 import org.ebayopensource.turmeric.runtime.tests.common.AbstractTurmericTestCase;
@@ -25,6 +27,8 @@ import org.junit.Test;
 public class LocalCustomError1Test extends AbstractTurmericTestCase {
     @Rule
     public NeedsConfig needsconfig = new NeedsConfig("config");
+    
+    private static final Logger LOG = Logger.getLogger(LocalCustomError1Test.class.getName());
     
     private ServicePayloadExecutor createExecutor() throws Exception {
         // Setup Request
@@ -49,6 +53,7 @@ public class LocalCustomError1Test extends AbstractTurmericTestCase {
     @Test
     //@Ignore // inconsistent testcases
     public void test1Exception() throws Exception {
+    	LOG.info("Inconsistent testing LocalCustomError1Test -  test1Exception() starting");
         ServicePayloadExecutor test = createExecutor();
         test.addTransportHeader(Test1Constants.TR_HDR_TEST1_EXCEPTION, "true");
         test.addTransportHeader(Test1Constants.TR_HDR_TEST1_HARMLESS_EXCEPTION, "true");
@@ -59,8 +64,10 @@ public class LocalCustomError1Test extends AbstractTurmericTestCase {
         error.needsExceptionText("Test1Exception: Our test1 exception");
         error.optionalErrorDataId(ErrorDataCollection.svc_rt_application_internal_error);
         test.setAssertException(error);
+        LOG.info("Inconsistent testing LocalCustomError1Test -  test1Exception() setAssertException" + error);
 
         test.doCalls();
+        LOG.info("Inconsistent testing LocalCustomError1Test -  test1Exception() ending");
     }
 
     @SuppressWarnings("deprecation")

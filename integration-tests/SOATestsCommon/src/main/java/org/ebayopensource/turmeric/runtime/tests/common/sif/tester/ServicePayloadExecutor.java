@@ -247,6 +247,10 @@ public class ServicePayloadExecutor {
 
     private void doCall(String requestPayloadFormat, String responsePayloadFormat, TestMode mode)
                     throws AssertionError, Exception {
+    	LOG.info("Inconsistent testing ServicePayloadExecutor -  doCall() starting" +
+    			" requestPayloadFormat - "+ requestPayloadFormat +
+    			", responsePayloadFormat - " + responsePayloadFormat +
+    			", mode - " + mode);
         ExecutionScope scope = new ExecutionScope(requestPayloadFormat, responsePayloadFormat, mode);
         LOG.info(String.format("Starting Test1Service execution with %s", scope));
 
@@ -286,6 +290,10 @@ public class ServicePayloadExecutor {
                 LOG.info(String.format("Duration: %,d nsecs with %s", duration, scope));
             }
         }
+        LOG.info("Inconsistent testing ServicePayloadExecutor -  doCall() ending" +
+    			" requestPayloadFormat - "+ requestPayloadFormat +
+    			", responsePayloadFormat - " + responsePayloadFormat +
+    			", mode - " + mode);
     }
 
     public void doCalls() throws AssertionError, Exception {
@@ -433,8 +441,12 @@ public class ServicePayloadExecutor {
                 }
             }
 
+            LOG.info("Inconsistent testing ServicePayloadExecutor -  invokeAsyncPush() handler.hasError() " + handler.hasError());
+            
             if (handler.hasError()) {
+            	LOG.info("Inconsistent testing ServicePayloadExecutor -  invokeAsyncPush() handler.getError() " + handler.getError());
                 throw (ExecutionException) handler.getError();
+                
             }
 
             outParams.add(handler.get());
